@@ -33,6 +33,13 @@ public class Main {
 
 		session.save(student);
 
+		/*Test 1: if the reference is set to null , the cascade setting will do nothing. */
+		// student.setDetail(null);
+		// session.delete(student);
+
+		/*Test 2: The Cascade setting for the reference is ALL or REMOVE, the reference will be deleted simultaneously.*/
+		// session.delete(student);
+
 		session.getTransaction().commit();
 		session.close();
 		sessionFactory.close();
