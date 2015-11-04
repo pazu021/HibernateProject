@@ -1,6 +1,8 @@
 package org.example.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -42,6 +45,9 @@ public class Student {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Department department;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	private Set<Course> courses = new HashSet<Course>(0);
 
 	public Student() {
 	}
@@ -109,6 +115,14 @@ public class Student {
 
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
 	}
 
 }

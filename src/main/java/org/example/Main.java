@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.example.model.Course;
 import org.example.model.Department;
 import org.example.model.Student;
 import org.example.model.StudentDetail;
@@ -22,6 +23,9 @@ public class Main {
 		StudentDetail studentDetail2 = new StudentDetail();
 
 		Department department = new Department();
+
+		Course course = new Course();
+		Course course2 = new Course();
 
 		// set student
 		student.setName("student 1");
@@ -45,6 +49,10 @@ public class Main {
 		department.setCode("EE");
 		department.setName("Electronic Enginnering");
 
+		// set Course
+		course.setName("Network");
+		course2.setName("Programming");
+
 		// set relationship
 		student.setStudentDetail(studentDetail);
 		student2.setStudentDetail(studentDetail2);
@@ -55,15 +63,16 @@ public class Main {
 		department.getStudents().add(student);
 		department.getStudents().add(student2);
 
+		student.getCourses().add(course);
+		student.getCourses().add(course2);
+
 		SessionFactory sessionFactory = new AnnotationConfiguration()
 				.configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
-		session.save(department);
-
-		// session.save(student);
-		// session.save(student2);
+		session.save(student);
+		session.save(student2);
 
 		session.getTransaction().commit();
 		session.close();

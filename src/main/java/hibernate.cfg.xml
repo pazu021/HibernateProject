@@ -43,5 +43,6 @@
 		<mapping class="org.example.model.Student" />
 		<mapping class="org.example.model.StudentDetail" />
 		<mapping class="org.example.model.Department" />
+		<mapping class="org.example.model.Course" />
 	</session-factory>
 </hibernate-configuration>
