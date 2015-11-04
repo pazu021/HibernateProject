@@ -13,17 +13,12 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
 @Entity
 @Table(name = "STUDENT")
 public class Student {
 
-	//Set the primary key of student as the primary key of the reference (student detail) when they are being saved together.
 	@Id
-	@GeneratedValue(generator = "generator")
-	@GenericGenerator(name = "generator", strategy = "foreign", parameters = { @Parameter(name = "property", value = "detail") })
+	@GeneratedValue
 	private Long rollNo;
 
 	@Column(nullable = false)
@@ -39,10 +34,6 @@ public class Student {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modifiedDate;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id")
-	private StudentDetail detail;
 
 	public Student() {
 	}
@@ -94,14 +85,6 @@ public class Student {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public StudentDetail getDetail() {
-		return detail;
-	}
-
-	public void setDetail(StudentDetail detail) {
-		this.detail = detail;
 	}
 
 }

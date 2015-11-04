@@ -24,21 +24,27 @@ public class Main {
 				.parse("01-01-1988"));
 
 		detail.setMobileNumber("23232323");
-		student.setDetail(detail);
+		detail.setStudent(student);
 
 		SessionFactory sessionFactory = new AnnotationConfiguration()
 				.configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
-		session.save(student);
+		session.save(detail);
 
-		/*Test 1: if the reference is set to null , the cascade setting will do nothing. */
-		// student.setDetail(null);
-		// session.delete(student);
+		/*
+		 * Test 1: if the reference is set to null , the cascade setting will do
+		 * nothing.
+		 */
+		// detail.setStudent(null);
+		// session.delete(detail);
 
-		/*Test 2: The Cascade setting for the reference is ALL or REMOVE, the reference will be deleted simultaneously.*/
-		// session.delete(student);
+		/*
+		 * Test 2: The Cascade setting for the reference is ALL or REMOVE, the
+		 * reference will be deleted simultaneously.
+		 */
+		// session.delete(detail);
 
 		session.getTransaction().commit();
 		session.close();
