@@ -21,20 +21,20 @@ public class StudentDetail {
 	@Id
 	@GeneratedValue(generator = "generator")
 	@GenericGenerator(name = "generator", strategy = "foreign", parameters = { @Parameter(name = "property", value = "student") })
-	private Long id;
+	private Long studentId;
 
 	private String mobileNumber;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "studentId")
 	private Student student;
 
-	public Long getId() {
-		return id;
+	public Long getStudentId() {
+		return studentId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setStudentId(Long studentId) {
+		this.studentId = studentId;
 	}
 
 	public String getMobileNumber() {

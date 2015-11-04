@@ -19,7 +19,7 @@ public class Student {
 
 	@Id
 	@GeneratedValue
-	private Long rollNo;
+	private Long studentId;
 
 	@Column(nullable = false)
 	private String name;
@@ -71,14 +71,6 @@ public class Student {
 		this.birthDate = birthDate;
 	}
 
-	public Long getRollNo() {
-		return rollNo;
-	}
-
-	public void setRollNo(Long rollNo) {
-		this.rollNo = rollNo;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -87,4 +79,7 @@ public class Student {
 		this.name = name;
 	}
 
+	public Long getStudentId() {
+		return studentId;
+	}
 }
