@@ -35,6 +35,10 @@ public class Student {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modifiedDate;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "studentId")
+	private StudentDetail studentDetail;
+
 	public Student() {
 	}
 
@@ -82,4 +86,17 @@ public class Student {
 	public Long getStudentId() {
 		return studentId;
 	}
+
+	public void setStudentId(Long studentId) {
+		this.studentId = studentId;
+	}
+
+	public StudentDetail getStudentDetail() {
+		return studentDetail;
+	}
+
+	public void setStudentDetail(StudentDetail studentDetail) {
+		this.studentDetail = studentDetail;
+	}
+
 }

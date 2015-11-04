@@ -26,13 +26,15 @@ public class Main {
 		detail.setMobileNumber("23232323");
 		detail.setStudent(student);
 
+		student.setStudentDetail(detail);
+
 		SessionFactory sessionFactory = new AnnotationConfiguration()
 				.configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
-		session.save(detail);
-
+		session.save(student);
+		// session.save(detail);
 		/*
 		 * Test 1: if the reference is set to null , the cascade setting will do
 		 * nothing.
