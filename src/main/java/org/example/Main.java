@@ -52,39 +52,18 @@ public class Main {
 		student.setDepartment(department);
 		student2.setDepartment(department);
 
+		department.getStudents().add(student);
+		department.getStudents().add(student2);
+
 		SessionFactory sessionFactory = new AnnotationConfiguration()
 				.configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
-		session.save(student);
-		session.save(student2);
+		session.save(department);
 
-		/*
-		 * Test 1: Remove one of the Many side with CascadeType.ALL to see
-		 * whether it can succeed ( Many students link to one department)
-		 * 
-		 * Result: Exception in thread "main"
-		 * org.hibernate.ObjectDeletedException: deleted object would be
-		 * re-saved by cascade (remove deleted object from associations):
-		 * [org.example.model.Department#EE]
-		 */
 		// session.save(student);
 		// session.save(student2);
-		// session.delete(student);
-
-		/*
-		 * Test 2: Remove one of the Many side with CascadeType.PERSIST to see
-		 * whether it can succeed ( Many students link to one department)
-		 * 
-		 * Result: student can be deleted successfully and the department is
-		 * remained unchanged as the cascade type is persist only. No removal
-		 * can be done.
-		 */
-
-		// session.persist(student);
-		// session.persist(student2);
-		// session.delete(student);
 
 		session.getTransaction().commit();
 		session.close();
