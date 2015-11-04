@@ -25,7 +25,7 @@ public class Main {
 		Department department = new Department();
 
 		Course course = new Course();
-		Course course2 = new Course();
+		// Course course2 = new Course();
 
 		// set student
 		student.setName("student 1");
@@ -51,7 +51,7 @@ public class Main {
 
 		// set Course
 		course.setName("Network");
-		course2.setName("Programming");
+		// course2.setName("Programming");
 
 		// set relationship
 		student.setStudentDetail(studentDetail);
@@ -63,16 +63,23 @@ public class Main {
 		department.getStudents().add(student);
 		department.getStudents().add(student2);
 
+		// student.getCourses().add(course);
+		// student.getCourses().add(course2);
+
 		student.getCourses().add(course);
-		student.getCourses().add(course2);
+		student2.getCourses().add(course);
+
+		course.getStudents().add(student);
+		course.getStudents().add(student2);
 
 		SessionFactory sessionFactory = new AnnotationConfiguration()
 				.configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
-		session.save(student);
-		session.save(student2);
+		// session.save(student);
+		// session.save(student2);
+		session.save(course);
 
 		session.getTransaction().commit();
 		session.close();
