@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -38,6 +39,9 @@ public class Student {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "studentId")
 	private StudentDetail studentDetail;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Department department;
 
 	public Student() {
 	}
@@ -97,6 +101,14 @@ public class Student {
 
 	public void setStudentDetail(StudentDetail studentDetail) {
 		this.studentDetail = studentDetail;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 }

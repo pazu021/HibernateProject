@@ -42,6 +42,6 @@
 		<!-- Mention here all the model classes along with their package name -->
 		<mapping class="org.example.model.Student" />
 		<mapping class="org.example.model.StudentDetail" />
-
+		<mapping class="org.example.model.Department" />
 	</session-factory>
 </hibernate-configuration>
