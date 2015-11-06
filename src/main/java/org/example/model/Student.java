@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -47,6 +48,8 @@ public class Student {
 	private Department department;
 
 	@ManyToMany(cascade = CascadeType.ALL)
+	//Could add the below annotation to manually define the mapping table for Student and Course. Or just ignore the below annotation to let it be created automatically 
+	@JoinTable(name = "Student_Course", joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "studentId"), inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"))
 	private Set<Course> courses = new HashSet<Course>(0);
 
 	public Student() {
